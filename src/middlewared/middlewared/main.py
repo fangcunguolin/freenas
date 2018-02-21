@@ -278,7 +278,7 @@ class Application(object):
                     'version': '1',
                 })
             else:
-                await self.middleware.call_hook('core.on_connect', app=self)
+                await asyncio.shield(self.middleware.call_hook('core.on_connect', app=self))
                 self._send({
                     'msg': 'connected',
                     'session': self.sessionid,
